@@ -30,7 +30,7 @@ MMCMainPresenter >> initMooseFormPresenter [
 { #category : #initialization }
 MMCMainPresenter >> initMooseModelPresenter [
 	mooseModelPresenter := self instantiate: MMCMooseModelPresenter.
-	mooseModelPresenter subscribeTo: context
+"	mooseModelPresenter subscribeTo: context"
 ]
 
 { #category : #initialization }

@@ -38,7 +38,7 @@ MMCMooseFormPresenter >> initializeWidgets [
 MMCMooseFormPresenter >> pageFor: aFormClass [
 	| aForm |
 	aForm := self instantiate: aFormClass.
-	aForm subscribeTo:context . 
+	"aForm subscribeTo:context ." 
 	^ self newTab
 		label: aForm name;
 		closeable: false;
