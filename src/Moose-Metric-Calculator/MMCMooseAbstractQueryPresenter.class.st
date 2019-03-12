@@ -4,18 +4,19 @@ Class {
 	#instVars : [
 		'queriesDropDown',
 		'queryValueInput',
-		'queriesOperationsDropDown'
+		'queriesOperationsDropDown',
+		'queriesOKButton'
 	],
 	#category : #'Moose-Metric-Calculator-Gui-Presenters'
 }
 
 { #category : #specs }
 MMCMooseAbstractQueryPresenter class >> defaultSpec [
-	^ SpecTableLayout column
-		cellSpacing: 20;
+	^ SpecColumnLayout composed
 		add: #queriesDropDown;
-		newRow: [ :r | r add: #queriesOperationsDropDown  ];
+		newRow: [ :r | r add: #queriesOperationsDropDown right: 50 ];
 		add: #queryValueInput;
+		add: #queriesOKButton;
 		yourself
 ]
 
@@ -43,7 +44,11 @@ MMCMooseAbstractQueryPresenter >> initQueryValueInput [
 MMCMooseAbstractQueryPresenter >> initializeWidgets [
 	self initQueriesDropListPresenter.
 	self initQueriesOperationsDropDown.
-	self initQueryValueInput
+	self initQueryValueInput.
+	queriesOKButton := self newButton.
+	queriesOKButton
+		label: 'Search';
+		icon: (self iconNamed: #glamorousSearch)
 ]
 
 { #category : #accessing }
@@ -59,6 +64,11 @@ MMCMooseAbstractQueryPresenter >> operations [
 { #category : #accessing }
 MMCMooseAbstractQueryPresenter >> queriesDropDown [
 	^ queriesDropDown
+]
+
+{ #category : #accessing }
+MMCMooseAbstractQueryPresenter >> queriesOKButton [
+	^ queriesOKButton
 ]
 
 { #category : #accessing }
