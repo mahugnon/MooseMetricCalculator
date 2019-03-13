@@ -29,8 +29,15 @@ MMCMooseFormPresenter >> formManager [
 ]
 
 { #category : #initialization }
+MMCMooseFormPresenter >> initializePresenter [
+	formManager
+		whenTabSelected:
+			[ :tab | context activeFormPresenter: (tab retrievingBlockHolder value at: 1) ]
+]
+
+{ #category : #initialization }
 MMCMooseFormPresenter >> initializeWidgets [
-	formManager := self newTabManager.
+	formManager := self newTabManager. 
 	formManager
 		addTab: (self pageFor: MMCMoosePropertyFormPresenter);
 		addTab: (self pageFor: MMCMooseAssociationFormPresenter);

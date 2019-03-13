@@ -13,9 +13,25 @@ Class {
 	#category : #'Moose-Metric-Calculator-Context'
 }
 
+{ #category : #accessing }
+MMCContext >> activeFormPresenter [
+	^ activeFormPresenter
+]
+
+{ #category : #accessing }
+MMCContext >> activeFormPresenter: aMooseQueryFormPresenter [
+	activeFormPresenter := aMooseQueryFormPresenter
+]
+
 { #category : #adding }
 MMCContext >> addListener: aListener [
 	listeners add: aListener
+]
+
+{ #category : #accessing }
+MMCContext >> focus: aMooseModel [
+	focus := aMooseModel.
+	self notifyAll
 ]
 
 { #category : #utilities }
@@ -28,8 +44,9 @@ MMCContext >> initialize [
 	super initialize.
 	listeners := OrderedCollection new.
 	mooseModel := MooseModel root isEmpty
-		ifTrue: [  OrderedCollection new ]
-		ifFalse: [ MooseModel root last allModelClasses ]
+		ifTrue: [ OrderedCollection new ]
+		ifFalse: [ MooseModel root last allModelClasses ].
+	activeFormPresenter := MMCMoosePropertyFormPresenter
 ]
 
 { #category : #accesing }

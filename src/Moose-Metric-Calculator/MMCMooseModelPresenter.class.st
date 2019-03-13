@@ -24,9 +24,25 @@ MMCMooseModelPresenter class >> runMe [
 ]
 
 { #category : #initialization }
-MMCMooseModelPresenter >> initializeWidgets [
+MMCMooseModelPresenter >> initiMooseModels [
 	mooseModels := self instantiate: FastTablePresenter.
+	mooseModels
+		displayBlock: [ :item | 
+			item class = MooseModel
+				ifTrue: [ item name ]
+				ifFalse: [ item asString copyReplaceAll: 'famixt' with: 'famix' ] ];
+		icons: [ :item | item mooseIcon ];
+		sortingBlock: [ :a :b | a asString < b asString ]
+]
 
+{ #category : #initialization }
+MMCMooseModelPresenter >> initializePresenter [
+	mooseModels whenSelectedItemChanged: [ :item | context focus: item ]
+]
+
+{ #category : #initialization }
+MMCMooseModelPresenter >> initializeWidgets [
+	self initiMooseModels
 ]
 
 { #category : #accessing }

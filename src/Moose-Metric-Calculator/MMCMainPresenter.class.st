@@ -27,7 +27,8 @@ MMCMainPresenter class >> runMe [
 
 { #category : #initialization }
 MMCMainPresenter >> initMooseFormPresenter [
-	mooseFormPresenter := self instantiate: MMCMooseFormPresenter
+	mooseFormPresenter := self instantiate: MMCMooseFormPresenter.
+	mooseFormPresenter subscribeTo: context
 ]
 
 { #category : #initialization }
