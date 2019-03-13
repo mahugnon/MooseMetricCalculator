@@ -6,7 +6,8 @@ Class {
 	#name : #MMCAbstractAdapter,
 	#superclass : #Object,
 	#instVars : [
-		'queries'
+		'queries',
+		'model'
 	],
 	#category : #'Moose-Metric-Calculator-Adapter'
 }
@@ -20,13 +21,13 @@ MMCAbstractAdapter class >> adaptedClass [
 MMCAbstractAdapter class >> adapterFor: aModel [
 	| adapter |
 	aModel ifNil: [ ^ self new ].
-	adapter := (self withAllSubclasses
+	adapter := (self allSubclasses
 		select:
 			[ :each | aModel class withAllSuperclasses includes: each adaptedClass ])
 		sorted: [ :a :b | b allSubclasses includes: a ].
 	^ adapter isEmpty
 		ifTrue: [ self new ]
-		ifFalse: [ adapter first new ]
+		ifFalse: [ adapter first new model: aModel ]
 ]
 
 { #category : #accessing }
@@ -43,9 +44,15 @@ MMCAbstractAdapter >> initQueries [
 ]
 
 { #category : #initialization }
-MMCAbstractAdapter >> initialize [ 
-super initialize .
-self initQueries
+MMCAbstractAdapter >> initialize [
+	super initialize.
+	
+]
+
+{ #category : #accessing }
+MMCAbstractAdapter >> model: aModel [
+	model := aModel.
+	self initQueries
 ]
 
 { #category : #utilities }
@@ -54,7 +61,7 @@ MMCAbstractAdapter >> navigations [
 
 { #category : #accessing }
 MMCAbstractAdapter >> properties [
-	^ self class adaptedClass  allDeclaredProperties
+	^ model allDeclaredProperties
 ]
 
 { #category : #utilities }
