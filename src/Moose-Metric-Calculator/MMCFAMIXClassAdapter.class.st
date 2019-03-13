@@ -11,8 +11,3 @@ Class {
 MMCFAMIXClassAdapter class >> adaptedClass [
 	^ FAMIXClass
 ]
-
-{ #category : #accessing }
-MMCFAMIXClassAdapter >> properties [
-	^ FAMIXClass allDeclaredProperties
-]

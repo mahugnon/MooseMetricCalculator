@@ -45,8 +45,7 @@ MMCContext >> initialize [
 	listeners := OrderedCollection new.
 	mooseModel := MooseModel root isEmpty
 		ifTrue: [ OrderedCollection new ]
-		ifFalse: [ MooseModel root last ].
-	
+		ifFalse: [ MooseModel root last cacheMooseGroups entityCache ]
 ]
 
 { #category : #accesing }

@@ -54,7 +54,7 @@ MMCAbstractAdapter >> navigations [
 
 { #category : #accessing }
 MMCAbstractAdapter >> properties [
-	^ #()
+	^ self class adaptedClass  allDeclaredProperties
 ]
 
 { #category : #utilities }
