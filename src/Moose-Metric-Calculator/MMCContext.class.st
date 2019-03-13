@@ -45,7 +45,7 @@ MMCContext >> initialize [
 	listeners := OrderedCollection new.
 	mooseModel := MooseModel root isEmpty
 		ifTrue: [ OrderedCollection new ]
-		ifFalse: [ MooseModel root last allModelClasses ].
+		ifFalse: [ MooseModel root last ].
 	
 ]
 
