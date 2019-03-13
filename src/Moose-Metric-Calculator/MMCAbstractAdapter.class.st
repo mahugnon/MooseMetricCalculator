@@ -13,7 +13,7 @@ Class {
 
 { #category : #utilities }
 MMCAbstractAdapter class >> adaptedClass [
-	^ MooseEntity
+	^ self subclassResponsibility
 ]
 
 { #category : #utilities }

@@ -37,7 +37,8 @@ MMCMooseModelPresenter >> initiMooseModels [
 
 { #category : #initialization }
 MMCMooseModelPresenter >> initializePresenter [
-	mooseModels whenSelectedItemChanged: [ :item | context focus: item ]
+	mooseModels
+		whenSelectedItemChanged:[ :item | item ifNotNil: (self setFocus: item) ]
 ]
 
 { #category : #initialization }
@@ -48,6 +49,11 @@ MMCMooseModelPresenter >> initializeWidgets [
 { #category : #accessing }
 MMCMooseModelPresenter >> mooseModels [
 	^ mooseModels
+]
+
+{ #category : #initialization }
+MMCMooseModelPresenter >> setFocus: item [
+	^ [ context focus:item]
 ]
 
 { #category : #subscription }

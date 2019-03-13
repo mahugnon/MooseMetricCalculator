@@ -34,7 +34,7 @@ MMCDropListPresenter >> dropList [
 MMCDropListPresenter >> initializeWidgets [
 	dropList := self newDropList.
 	dropList
-		items: #(#name #LOC);
+		
 		displayBlock: [ :item | item name asString ].
 	label := self newLabel
 ]
