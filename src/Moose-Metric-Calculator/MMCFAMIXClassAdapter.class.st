@@ -7,8 +7,12 @@ Class {
 	#category : #'Moose-Metric-Calculator-Adapter'
 }
 
-{ #category : #initialization }
-MMCFAMIXClassAdapter >> initialize [
-	super initialize.
-	mooseEntity := FAMIXClass
+{ #category : #'as yet unclassified' }
+MMCFAMIXClassAdapter class >> adaptedClass [
+	^ FAMIXClass
+]
+
+{ #category : #accessing }
+MMCFAMIXClassAdapter >> properties [
+	^ FAMIXClass allDeclaredProperties
 ]

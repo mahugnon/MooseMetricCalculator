@@ -46,7 +46,7 @@ MMCContext >> initialize [
 	mooseModel := MooseModel root isEmpty
 		ifTrue: [ OrderedCollection new ]
 		ifFalse: [ MooseModel root last allModelClasses ].
-	activeFormPresenter := MMCMoosePropertyFormPresenter
+	
 ]
 
 { #category : #accesing }

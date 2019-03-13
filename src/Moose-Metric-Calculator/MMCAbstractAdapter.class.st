@@ -6,11 +6,15 @@ Class {
 	#name : #MMCAbstractAdapter,
 	#superclass : #Object,
 	#instVars : [
-		'mooseEntity',
 		'queries'
 	],
 	#category : #'Moose-Metric-Calculator-Adapter'
 }
+
+{ #category : #'as yet unclassified' }
+MMCAbstractAdapter class >> adaptedClass [
+	^ self subclassResponsibility
+]
 
 { #category : #'instance creation' }
 MMCAbstractAdapter class >> adapterFor: aModel [
@@ -47,7 +51,7 @@ MMCAbstractAdapter >> navigations [
 
 { #category : #accessing }
 MMCAbstractAdapter >> properties [
-	^ mooseEntity allDeclaredProperties
+	^ self subclassResponsibility
 ]
 
 { #category : #'as yet unclassified' }

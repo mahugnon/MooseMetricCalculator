@@ -5,7 +5,8 @@ Class {
 	#name : #MMCMooseFormPresenter,
 	#superclass : #MMCAbstractPresenter,
 	#instVars : [
-		'formManager'
+		'formManager',
+		'forms'
 	],
 	#category : #'Moose-Metric-Calculator-Gui-Presenters'
 }
@@ -29,29 +30,58 @@ MMCMooseFormPresenter >> formManager [
 ]
 
 { #category : #initialization }
+MMCMooseFormPresenter >> initForms [
+	forms := OrderedCollection new.
+	forms add: (self instantiate: MMCMoosePropertyFormPresenter).
+	forms add: (self instantiate: MMCMooseAssociationFormPresenter).
+	forms add: (self instantiate: MMCMooseNavigationFormPresenter)
+]
+
+{ #category : #initialization }
 MMCMooseFormPresenter >> initializePresenter [
 	formManager
 		whenTabSelected:
-			[ :tab | context activeFormPresenter: (tab retrievingBlockHolder value at: 1) ]
+			[ :tab | self setActiveFormPresenter: tab ]
 ]
 
 { #category : #initialization }
 MMCMooseFormPresenter >> initializeWidgets [
-	formManager := self newTabManager. 
+	self initForms.
+	formManager := self newTabManager.
 	formManager
-		addTab: (self pageFor: MMCMoosePropertyFormPresenter);
-		addTab: (self pageFor: MMCMooseAssociationFormPresenter);
-		addTab: (self pageFor: MMCMooseNavigationFormPresenter)
+		addTab: (self pageFor: forms first);
+		addTab: (self pageFor: forms second);
+		addTab: (self pageFor: forms third)
 ]
 
 { #category : #utilities }
-MMCMooseFormPresenter >> pageFor: aFormClass [
-	| aForm |
-	aForm := self instantiate: aFormClass.
-	"aForm subscribeTo:context ." 
+MMCMooseFormPresenter >> pageFor: aForm [
+	
+	
 	^ self newTab
 		label: aForm name;
 		closeable: false;
 		presenter: aForm;
 		yourself
+]
+
+{ #category : #initialization }
+MMCMooseFormPresenter >> setActiveFormPresenter: tab [
+	^ context
+		activeFormPresenter:
+			(forms
+				select: [ :each | each  = (tab retrievingBlockHolder value at: 1)])
+				first
+]
+
+{ #category : #subscription }
+MMCMooseFormPresenter >> subscribeTo: aContext [
+	super subscribeTo: aContext.
+	self setActiveFormPresenter: formManager tabs first.
+	forms do: [ :each | each subscribeTo: aContext ]
+]
+
+{ #category : #subscription }
+MMCMooseFormPresenter >> update [
+	context activeFormPresenter update
 ]

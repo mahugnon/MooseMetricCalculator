@@ -86,13 +86,17 @@ MMCMoosePropertyFormPresenter >> queryValueInput [
 ]
 
 { #category : #subscription }
+MMCMoosePropertyFormPresenter >> subscribeTo: aContext [
+	super subscribeTo: aContext.
+	queriesDropDown subscribeTo: aContext
+]
+
+{ #category : #subscription }
 MMCMoosePropertyFormPresenter >> update [
-	
+	self updateQueriesDropListPresenter
 ]
 
 { #category : #initialization }
 MMCMoosePropertyFormPresenter >> updateQueriesDropListPresenter [
- 
-	
-
+	queriesDropDown update
 ]
