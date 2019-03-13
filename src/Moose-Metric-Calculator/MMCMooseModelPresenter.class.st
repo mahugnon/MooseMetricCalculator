@@ -26,11 +26,18 @@ MMCMooseModelPresenter class >> runMe [
 { #category : #initialization }
 MMCMooseModelPresenter >> initializeWidgets [
 	mooseModels := self instantiate: FastTablePresenter.
+
 ]
 
 { #category : #accessing }
 MMCMooseModelPresenter >> mooseModels [
 	^ mooseModels
+]
+
+{ #category : #subscription }
+MMCMooseModelPresenter >> subscribeTo: aContext [
+	super subscribeTo: aContext.
+	self update
 ]
 
 { #category : #subscription }

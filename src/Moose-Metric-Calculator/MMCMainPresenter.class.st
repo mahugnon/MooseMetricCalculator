@@ -38,9 +38,9 @@ MMCMainPresenter >> initMooseModelPresenter [
 
 { #category : #initialization }
 MMCMainPresenter >> initializeWidgets [
+	self subscribeTo: MMCContext new.
 	self initMooseModelPresenter.
 	self initMooseFormPresenter.
-	self subscribeTo: MMCContext new
 ]
 
 { #category : #accessing }

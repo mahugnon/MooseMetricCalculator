@@ -18,7 +18,7 @@ MMCContext >> addListener: aListener [
 	listeners add: aListener
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #utilities }
 MMCContext >> getAdapter [
 	^ MMCAbstractAdapter adapterFor: focus
 ]
@@ -27,7 +27,14 @@ MMCContext >> getAdapter [
 MMCContext >> initialize [
 	super initialize.
 	listeners := OrderedCollection new.
-	mooseModel := MooseModel root last allModelClasses
+	mooseModel := MooseModel root isEmpty
+		ifTrue: [  OrderedCollection new ]
+		ifFalse: [ MooseModel root last allModelClasses ]
+]
+
+{ #category : #accesing }
+MMCContext >> mooseModel [
+	^ mooseModel
 ]
 
 { #category : #actions }
@@ -37,7 +44,7 @@ MMCContext >> notifyAll [
 		do: [ :each | each update ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #utilities }
 MMCContext >> queriesForActiveForm [
 	| adapter |
 	adapter := self getAdapter.
