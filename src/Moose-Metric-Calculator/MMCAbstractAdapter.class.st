@@ -61,7 +61,7 @@ MMCAbstractAdapter >> navigations [
 
 { #category : #accessing }
 MMCAbstractAdapter >> properties [
-	^ model allDeclaredProperties
+	^ model first allDeclaredProperties
 ]
 
 { #category : #utilities }

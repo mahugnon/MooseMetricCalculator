@@ -38,7 +38,7 @@ MMCMooseModelPresenter >> initiMooseModels [
 { #category : #initialization }
 MMCMooseModelPresenter >> initializePresenter [
 	mooseModels
-		whenSelectedItemChanged:[ :item | item ifNotNil: (self setFocus: item) ]
+		whenSelectedItemChanged: [ :item | item ifNotEmpty: (self setFocus: item) ]
 ]
 
 { #category : #initialization }
