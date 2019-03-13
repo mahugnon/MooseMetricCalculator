@@ -1,3 +1,6 @@
+"
+I group navigation, property and association gui
+"
 Class {
 	#name : #MMCMooseFormPresenter,
 	#superclass : #MMCAbstractPresenter,

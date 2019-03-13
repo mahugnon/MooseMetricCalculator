@@ -1,8 +1,13 @@
+"
+I'm the super of all adapter of the application. My goal is to provide so additionnal Api that Famix entities doesn'
+		t provide originaly
+"
 Class {
 	#name : #MMCAbstractAdapter,
 	#superclass : #Object,
 	#instVars : [
-		'entity'
+		'mooseEntity',
+		'queries'
 	],
 	#category : #'Moose-Metric-Calculator-Adapter'
 }
@@ -14,15 +19,38 @@ MMCAbstractAdapter class >> adapterFor: aModel [
 		select: [ :each | each adaptedClass = aModel class ].
 	^ adapter isEmpty
 		ifTrue: [ self new ]
-		ifFalse: [ adapter first new ]
+		ifFalse: [ adapter first new]
+]
+
+{ #category : #accessing }
+MMCAbstractAdapter >> associations [
+
+]
+
+{ #category : #'as yet unclassified' }
+MMCAbstractAdapter >> initQueries [
+	queries := Dictionary new.
+	queries at: 'Property' put: self properties.
+	queries at: 'Navigation' put: self navigations.
+	queries at: 'Associations' put: self associations
+]
+
+{ #category : #initialization }
+MMCAbstractAdapter >> initialize [ 
+super initialize .
+self initQueries
+]
+
+{ #category : #'as yet unclassified' }
+MMCAbstractAdapter >> navigations [
 ]
 
 { #category : #accessing }
 MMCAbstractAdapter >> properties [
-	^ entity allDeclaredProperties
+	^ mooseEntity allDeclaredProperties
 ]
 
 { #category : #'as yet unclassified' }
 MMCAbstractAdapter >> queriesFor: aFormPresenter [
-	^ self perform: aFormPresenter displayName asSymbol
+	^ queries at: aFormPresenter name
 ]

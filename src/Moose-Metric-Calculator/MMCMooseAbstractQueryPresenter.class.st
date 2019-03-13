@@ -1,10 +1,12 @@
+"
+I'm the super class of invocation and navigation
+"
 Class {
 	#name : #MMCMooseAbstractQueryPresenter,
 	#superclass : #MMCAbstractPresenter,
 	#instVars : [
-		'queriesDropDown',
-		'queryValueInput',
-		'queriesOperationsDropDown',
+		'ingoing',
+		'outgoing',
 		'queriesOKButton'
 	],
 	#category : #'Moose-Metric-Calculator-Gui-Presenters'
@@ -12,71 +14,39 @@ Class {
 
 { #category : #specs }
 MMCMooseAbstractQueryPresenter class >> defaultSpec [
-	^ SpecColumnLayout composed
-		add: #queriesDropDown;
-		newRow: [ :r | r add: #queriesOperationsDropDown right: 50 ];
-		add: #queryValueInput;
+	^ SpecTableLayout column
+		newRow: [ :r | 
+			r
+				add: #ingoing;
+				add: #outgoing ];
 		add: #queriesOKButton;
 		yourself
 ]
 
-{ #category : #initialization }
-MMCMooseAbstractQueryPresenter >> initQueriesDropListPresenter [
-	queriesDropDown := self instantiate: MMCDropListPresenter.
-	queriesDropDown label: self name
-]
-
-{ #category : #initialization }
-MMCMooseAbstractQueryPresenter >> initQueriesOperationsDropDown [
-	queriesOperationsDropDown := self newDropList.
-	queriesOperationsDropDown
-		items: self operations;
-		displayBlock: [ :item | item asString ]
-]
-
-{ #category : #initialization }
-MMCMooseAbstractQueryPresenter >> initQueryValueInput [
-	queryValueInput := self newTextInput.
-	queryValueInput ghostText: self name , ' ' , 'value'
+{ #category : #accessing }
+MMCMooseAbstractQueryPresenter >> ingoing [
+	^ ingoing
 ]
 
 { #category : #initialization }
 MMCMooseAbstractQueryPresenter >> initializeWidgets [
-	self initQueriesDropListPresenter.
-	self initQueriesOperationsDropDown.
-	self initQueryValueInput.
-	queriesOKButton := self newButton.
-	queriesOKButton
-		label: 'Search';
-		icon: (self iconNamed: #glamorousSearch)
+	ingoing := self instantiate: RadioButtonPresenter.
+	outgoing := self instantiate: RadioButtonPresenter.
+	ingoing label: 'Ingoing'.
+	outgoing label: 'Outgoing'.
+	RadioButtonGroupPresenter new
+		addRadioButton: ingoing;
+		addRadioButton: outgoing;
+		default: ingoing.
+	queriesOKButton := self newButton
 ]
 
 { #category : #accessing }
-MMCMooseAbstractQueryPresenter >> name [
-	^ self subclassResponsibility
-]
-
-{ #category : #accessing }
-MMCMooseAbstractQueryPresenter >> operations [
-	^ #(= < >) asOrderedCollection
-]
-
-{ #category : #accessing }
-MMCMooseAbstractQueryPresenter >> queriesDropDown [
-	^ queriesDropDown
+MMCMooseAbstractQueryPresenter >> outgoing [
+	^ outgoing
 ]
 
 { #category : #accessing }
 MMCMooseAbstractQueryPresenter >> queriesOKButton [
 	^ queriesOKButton
-]
-
-{ #category : #accessing }
-MMCMooseAbstractQueryPresenter >> queriesOperationsDropDown [
-	^ queriesOperationsDropDown
-]
-
-{ #category : #accessing }
-MMCMooseAbstractQueryPresenter >> queryValueInput [
-	^ queryValueInput
 ]

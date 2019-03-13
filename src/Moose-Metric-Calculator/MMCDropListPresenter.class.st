@@ -1,3 +1,6 @@
+"
+I'm the component that group a dropdown and a label
+"
 Class {
 	#name : #MMCDropListPresenter,
 	#superclass : #MMCAbstractPresenter,

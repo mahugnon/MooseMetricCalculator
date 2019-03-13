@@ -1,3 +1,6 @@
+"
+I'm the container of moose model understudy
+"
 Class {
 	#name : #MMCMooseModelPresenter,
 	#superclass : #MMCAbstractPresenter,
@@ -28,4 +31,9 @@ MMCMooseModelPresenter >> initializeWidgets [
 { #category : #accessing }
 MMCMooseModelPresenter >> mooseModels [
 	^ mooseModels
+]
+
+{ #category : #subscription }
+MMCMooseModelPresenter >> update [
+	^ mooseModels items: context mooseModel
 ]

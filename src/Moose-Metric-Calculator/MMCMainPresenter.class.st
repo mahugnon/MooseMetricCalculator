@@ -1,3 +1,6 @@
+"
+I'm the main component of the application. I group all component together  to provide the desired functionnality
+"
 Class {
 	#name : #MMCMainPresenter,
 	#superclass : #MMCAbstractPresenter,
@@ -30,7 +33,7 @@ MMCMainPresenter >> initMooseFormPresenter [
 { #category : #initialization }
 MMCMainPresenter >> initMooseModelPresenter [
 	mooseModelPresenter := self instantiate: MMCMooseModelPresenter.
-"	mooseModelPresenter subscribeTo: context"
+	mooseModelPresenter subscribeTo: context
 ]
 
 { #category : #initialization }
@@ -48,4 +51,9 @@ MMCMainPresenter >> mooseFormPresenter [
 { #category : #accessing }
 MMCMainPresenter >> mooseModelPresenter [
 	^ mooseModelPresenter
+]
+
+{ #category : #subscription }
+MMCMainPresenter >> update [
+	
 ]
