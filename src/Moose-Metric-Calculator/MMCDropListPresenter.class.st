@@ -49,7 +49,7 @@ MMCDropListPresenter >> label: aString [
 	label label: aString
 ]
 
-{ #category : #subscription }
+{ #category : #updating }
 MMCDropListPresenter >> update [
 	dropList items: context queriesForActiveForm
 ]

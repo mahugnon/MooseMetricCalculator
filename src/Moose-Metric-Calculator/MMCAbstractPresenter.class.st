@@ -11,7 +11,7 @@ Class {
 	#category : #'Moose-Metric-Calculator-Gui-Presenters'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #utilities }
 MMCAbstractPresenter >> getAdapter [
 	mmcAdapter := MMCAbstractAdapter adapterFor: context focus
 ]
@@ -27,7 +27,7 @@ MMCAbstractPresenter >> subscribeTo: aContext [
 	context := aContext
 ]
 
-{ #category : #subscription }
+{ #category : #updating }
 MMCAbstractPresenter >> update [
 	context activeFormPresenter update
 ]

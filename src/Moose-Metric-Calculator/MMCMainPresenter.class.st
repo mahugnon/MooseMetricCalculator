@@ -54,7 +54,7 @@ MMCMainPresenter >> mooseModelPresenter [
 	^ mooseModelPresenter
 ]
 
-{ #category : #subscription }
+{ #category : #updating }
 MMCMainPresenter >> update [
 	
 ]
