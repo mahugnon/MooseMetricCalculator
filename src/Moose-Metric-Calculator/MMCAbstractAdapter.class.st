@@ -75,5 +75,5 @@ MMCAbstractAdapter >> searchEntitiesWithParam: aDictionary [
 		select: [ :each | 
 			(each perform: (aDictionary at: 'property') name asSymbol)
 				perform: (aDictionary at: 'operator') asSymbol
-				with: (aDictionary at: 'value') ]
+				with: (aDictionary at: 'value') asInteger ]
 ]

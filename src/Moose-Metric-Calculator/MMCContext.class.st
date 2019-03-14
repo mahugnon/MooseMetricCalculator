@@ -77,7 +77,7 @@ MMCContext >> notifyAll [
 MMCContext >> performSearchWithParameters: aDictionary [
 	history updatePast.
 	self
-		mooseModel: (self getAdapter searchEntitiesWithParam: aDictionary)
+		mooseModel: {(self getAdapter searchEntitiesWithParam: aDictionary)} 
 ]
 
 { #category : #utilities }
