@@ -1,11 +1,11 @@
 Class {
-	#name : #BaselineOfBaselineOfMooseMetricCalculator,
+	#name : #BaselineOfMooseMetricCalculator,
 	#superclass : #BaselineOf,
 	#category : #BaselineOfMooseMetricCalculator
 }
 
 { #category : #baselines }
-BaselineOfBaselineOfMooseMetricCalculator >> baseline: spec [
+BaselineOfMooseMetricCalculator >> baseline: spec [
 	"baselines"
 
 	<baseline>
@@ -19,7 +19,7 @@ BaselineOfBaselineOfMooseMetricCalculator >> baseline: spec [
 ]
 
 { #category : #baselines }
-BaselineOfBaselineOfMooseMetricCalculator >> baselineForMenuBar: spec [
+BaselineOfMooseMetricCalculator >> baselineForMenuBar: spec [
 	spec
 				baseline: 'Moose'
 				with: [ spec repository: 'github://mahugnon/VisuProject:bazader/src';
