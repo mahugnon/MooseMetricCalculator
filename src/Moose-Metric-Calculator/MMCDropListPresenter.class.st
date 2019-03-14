@@ -14,6 +14,8 @@ Class {
 { #category : #specs }
 MMCDropListPresenter class >> defaultSpec [
 	^ SpecTableLayout row
+		minCellSize: 10;
+		maxCellSize: 20;
 		add: #label;
 		add: #dropList;
 		yourself
@@ -28,6 +30,11 @@ MMCDropListPresenter class >> runMe [
 { #category : #accessing }
 MMCDropListPresenter >> dropList [
 	^ dropList
+]
+
+{ #category : #initialization }
+MMCDropListPresenter >> initializePresenter [
+	dropList whenSelectedItemChanged: [ :item | context propertyParam: 'property' value:item  ]
 ]
 
 { #category : #initialization }
