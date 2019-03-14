@@ -8,8 +8,7 @@ Class {
 		'listeners',
 		'mooseModel',
 		'focus',
-		'activeFormPresenter',
-		'propertiesQueryParameters'
+		'activeFormPresenter'
 	],
 	#category : #'Moose-Metric-Calculator-Context'
 }
@@ -43,7 +42,6 @@ MMCContext >> getAdapter [
 { #category : #initialization }
 MMCContext >> initialize [
 	super initialize.
-	propertiesQueryParameters := Dictionary  new.
 	listeners := OrderedCollection new.
 	mooseModel := MooseModel root isEmpty
 		ifTrue: [ OrderedCollection new ]
@@ -55,6 +53,12 @@ MMCContext >> mooseModel [
 	^ mooseModel
 ]
 
+{ #category : #accessing }
+MMCContext >> mooseModel: aModel [
+	mooseModel := {aModel}.
+	self notifyAll
+]
+
 { #category : #actions }
 MMCContext >> notifyAll [
 	^ listeners
@@ -62,9 +66,10 @@ MMCContext >> notifyAll [
 		do: [ :each | each update ]
 ]
 
-{ #category : #utilities }
-MMCContext >> propertyParam: aString value: aValue [
-	propertiesQueryParameters at: aString put: aValue
+{ #category : #accessing }
+MMCContext >> performSearchWithParameters: aDictionary [
+	self
+		mooseModel: (self getAdapter searchEntitiesWithParam: aDictionary)
 ]
 
 { #category : #utilities }

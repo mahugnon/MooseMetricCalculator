@@ -6,7 +6,8 @@ Class {
 	#superclass : #MMCAbstractPresenter,
 	#instVars : [
 		'dropList',
-		'label'
+		'label',
+		'selected'
 	],
 	#category : #'Moose-Metric-Calculator-Gui-Presenters'
 }
@@ -34,7 +35,8 @@ MMCDropListPresenter >> dropList [
 
 { #category : #initialization }
 MMCDropListPresenter >> initializePresenter [
-	dropList whenSelectedItemChanged: [ :item | context propertyParam: 'property' value:item  ]
+	dropList
+		whenSelectedItemChanged: [ :item | selected:=item]
 ]
 
 { #category : #initialization }
@@ -54,6 +56,11 @@ MMCDropListPresenter >> label [
 { #category : #accessing }
 MMCDropListPresenter >> label: aString [
 	label label: aString
+]
+
+{ #category : #accessing }
+MMCDropListPresenter >> selected [
+	^ selected
 ]
 
 { #category : #updating }

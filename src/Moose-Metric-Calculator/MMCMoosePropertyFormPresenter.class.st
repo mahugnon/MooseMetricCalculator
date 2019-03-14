@@ -52,6 +52,11 @@ MMCMoosePropertyFormPresenter >> initQueryValueInput [
 ]
 
 { #category : #initialization }
+MMCMoosePropertyFormPresenter >> initializePresenter [
+	queriesOKButton action: [ self performSearch ]
+]
+
+{ #category : #initialization }
 MMCMoosePropertyFormPresenter >> initializeWidgets [
 	self initQueriesDropListPresenter.
 	self initQueriesOperationsDropDown.
@@ -65,6 +70,17 @@ MMCMoosePropertyFormPresenter >> initializeWidgets [
 { #category : #accessing }
 MMCMoosePropertyFormPresenter >> name [
 	^ 'Property'
+]
+
+{ #category : #initialization }
+MMCMoosePropertyFormPresenter >> performSearch [
+	| param |
+	param := Dictionary new.
+	param
+		at: 'property' put: queriesDropDown selected;
+		at: 'operator' put: queriesOperationsDropDown selectedItem;
+		at: 'value' put: queryValueInput text asInteger.
+	context performSearchWithParameters: param
 ]
 
 { #category : #accessing }

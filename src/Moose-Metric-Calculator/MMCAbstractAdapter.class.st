@@ -68,3 +68,12 @@ MMCAbstractAdapter >> properties [
 MMCAbstractAdapter >> queriesFor: aFormPresenter [
 	^ queries at: aFormPresenter name
 ]
+
+{ #category : #'as yet unclassified' }
+MMCAbstractAdapter >> searchEntitiesWithParam: aDictionary [
+	^ model
+		select: [ :each | 
+			(each perform: (aDictionary at: 'property') name asSymbol)
+				perform: (aDictionary at: 'operator') asSymbol
+				with: (aDictionary at: 'value') ]
+]
