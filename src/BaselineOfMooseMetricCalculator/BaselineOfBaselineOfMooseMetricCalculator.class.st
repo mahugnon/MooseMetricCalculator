@@ -1,7 +1,7 @@
 Class {
 	#name : #BaselineOfBaselineOfMooseMetricCalculator,
 	#superclass : #BaselineOf,
-	#category : #'BaselineOfMoose-Metric-Calculator'
+	#category : #BaselineOfMooseMetricCalculator
 }
 
 { #category : #baselines }
