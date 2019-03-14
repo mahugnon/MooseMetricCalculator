@@ -22,7 +22,8 @@ BaselineOfMooseMetricCalculator >> baseline: spec [
 BaselineOfMooseMetricCalculator >> baselineForMenuBar: spec [
 	spec
 				baseline: 'Moose'
-				with: [ spec repository: 'github://mahugnon/VisuProject:bazader/src';
-					load:#('MooseVisuOnSpec-MenuBar') ] 
+				with: [ spec loads:#('MooseVisuOnSpec-MenuBar');
+					repository: 'github://mahugnon/VisuProject:bazader/src'
+					 ] 
 				
 ]
