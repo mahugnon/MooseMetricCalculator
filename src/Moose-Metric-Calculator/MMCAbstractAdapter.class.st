@@ -69,7 +69,7 @@ MMCAbstractAdapter >> queriesFor: aFormPresenter [
 	^ queries at: aFormPresenter name
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #utilities }
 MMCAbstractAdapter >> searchEntitiesWithParam: aDictionary [
 	^ model
 		select: [ :each | 
