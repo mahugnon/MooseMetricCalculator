@@ -42,9 +42,7 @@ MMCDropListPresenter >> initializePresenter [
 { #category : #initialization }
 MMCDropListPresenter >> initializeWidgets [
 	dropList := self newDropList.
-	dropList
-		
-		displayBlock: [ :item | item name asString ].
+	dropList displayBlock: [ :item | item name asString ].
 	label := self newLabel
 ]
 
