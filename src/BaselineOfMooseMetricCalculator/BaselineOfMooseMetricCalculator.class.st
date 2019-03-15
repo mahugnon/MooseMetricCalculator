@@ -16,14 +16,14 @@ BaselineOfMooseMetricCalculator >> baseline: spec [
 			"Packages "
 			spec package: 'Moose-Metric-Calculator-Tests';
 			package:'Moose-Metric-Calculator'with: [ spec
-						requires:#('MMooseVisuOnSpec-utilities')]]
+						requires:#('MooseVisuOnSpec-utilities')]]
 ]
 
 { #category : #baselines }
 BaselineOfMooseMetricCalculator >> baselineForMenuBar: spec [
 	spec
 				baseline: 'Moose'
-				with: [ spec loads:#('MooseVisuOnSpec-utilities');
+				with: [ spec loads:#('utilities');
 					repository: 'github://mahugnon/VisuProject:bazader/src'
 					 ] 
 				
