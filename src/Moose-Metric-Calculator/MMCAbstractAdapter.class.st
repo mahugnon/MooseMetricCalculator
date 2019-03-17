@@ -6,7 +6,6 @@ Class {
 	#name : #MMCAbstractAdapter,
 	#superclass : #Object,
 	#instVars : [
-		'queries',
 		'model'
 	],
 	#category : #'Moose-Metric-Calculator-Adapter'
@@ -35,14 +34,6 @@ MMCAbstractAdapter >> associations [
 
 ]
 
-{ #category : #utilities }
-MMCAbstractAdapter >> initQueries [
-	queries := Dictionary new.
-	queries at: 'Property' put: self properties.
-	queries at: 'Navigation' put: self navigations.
-	queries at: 'Associations' put: self associations
-]
-
 { #category : #initialization }
 MMCAbstractAdapter >> initialize [
 	super initialize.
@@ -62,11 +53,6 @@ MMCAbstractAdapter >> navigations [
 { #category : #accessing }
 MMCAbstractAdapter >> properties [
 	^ model first allDeclaredProperties
-]
-
-{ #category : #utilities }
-MMCAbstractAdapter >> queriesFor: aFormPresenter [
-	^ queries at: aFormPresenter name
 ]
 
 { #category : #'as yet unclassified' }

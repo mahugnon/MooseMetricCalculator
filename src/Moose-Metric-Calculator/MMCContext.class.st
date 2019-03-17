@@ -39,6 +39,11 @@ MMCContext >> getAdapter [
 	^ MMCAbstractAdapter adapterFor: focus
 ]
 
+{ #category : #utilities }
+MMCContext >> getProperties [
+	^ self getAdapter properties
+]
+
 { #category : #initialization }
 MMCContext >> initialize [
 	super initialize.
@@ -70,11 +75,4 @@ MMCContext >> notifyAll [
 MMCContext >> performSearchWithParameters: aDictionary [
 	self
 		mooseModel: (self getAdapter searchEntitiesWithParam: aDictionary)
-]
-
-{ #category : #utilities }
-MMCContext >> queriesForActiveForm [
-	| adapter |
-	adapter := self getAdapter.
-	^ adapter queriesFor: activeFormPresenter
 ]

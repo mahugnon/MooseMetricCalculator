@@ -65,5 +65,5 @@ MMCDropListPresenter >> selected [
 
 { #category : #updating }
 MMCDropListPresenter >> update [
-	dropList items: context queriesForActiveForm
+	dropList items: context getProperties
 ]
