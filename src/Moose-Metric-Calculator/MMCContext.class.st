@@ -8,7 +8,8 @@ Class {
 		'listeners',
 		'mooseModel',
 		'focus',
-		'activeFormPresenter'
+		'activeFormPresenter',
+		'history'
 	],
 	#category : #'Moose-Metric-Calculator-Context'
 }
@@ -44,6 +45,12 @@ MMCContext >> getProperties [
 	^ self getAdapter properties
 ]
 
+{ #category : #'history saving' }
+MMCContext >> history: aMMCHistory [
+ history:= aMMCHistory
+	
+]
+
 { #category : #initialization }
 MMCContext >> initialize [
 	super initialize.
@@ -60,7 +67,7 @@ MMCContext >> mooseModel [
 
 { #category : #accessing }
 MMCContext >> mooseModel: aModel [
-	mooseModel := {aModel}.
+	mooseModel := aModel.
 	self notifyAll
 ]
 
@@ -73,6 +80,7 @@ MMCContext >> notifyAll [
 
 { #category : #accessing }
 MMCContext >> performSearchWithParameters: aDictionary [
+	history updatePast.
 	self
-		mooseModel: (self getAdapter searchEntitiesWithParam: aDictionary)
+		mooseModel: {(self getAdapter searchEntitiesWithParam: aDictionary)} 
 ]

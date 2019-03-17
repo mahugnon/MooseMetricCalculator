@@ -6,16 +6,20 @@ Class {
 	#superclass : #MMCAbstractPresenter,
 	#instVars : [
 		'mooseModelPresenter',
-		'mooseFormPresenter'
+		'mooseFormPresenter',
+		'menuBar'
 	],
 	#category : #'Moose-Metric-Calculator-Gui-Presenters'
 }
 
 { #category : #specs }
 MMCMainPresenter class >> defaultSpec [
-	^ SpecTableLayout row
-		add: #mooseModelPresenter;
-		add: #mooseFormPresenter;
+	^ SpecTableLayout column
+		newRow: [ :r | r add: #menuBar ] height: self toolbarHeight;
+		newRow: [ :r | 
+			r
+				add: #mooseModelPresenter;
+				add: #mooseFormPresenter ];
 		yourself
 ]
 
@@ -23,6 +27,14 @@ MMCMainPresenter class >> defaultSpec [
 MMCMainPresenter class >> runMe [
 	<example>
 	self new openWithSpec
+]
+
+{ #category : #initialization }
+MMCMainPresenter >> initMenuBar [
+	menuBar := self instantiate: MMCMenuBarPresenter.
+	menuBar subscribeToContext: context.
+	menuBar update 
+	
 ]
 
 { #category : #initialization }
@@ -42,6 +54,12 @@ MMCMainPresenter >> initializeWidgets [
 	self subscribeTo: MMCContext new.
 	self initMooseModelPresenter.
 	self initMooseFormPresenter.
+	self initMenuBar
+]
+
+{ #category : #accessing }
+MMCMainPresenter >> menuBar [
+	^ menuBar
 ]
 
 { #category : #accessing }

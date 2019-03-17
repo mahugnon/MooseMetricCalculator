@@ -6,8 +6,7 @@ Class {
 	#superclass : #MMCAbstractPresenter,
 	#instVars : [
 		'ingoing',
-		'outgoing',
-		'queriesOKButton'
+		'outgoing'
 	],
 	#category : #'Moose-Metric-Calculator-Gui-Presenters'
 }
@@ -15,11 +14,13 @@ Class {
 { #category : #specs }
 MMCMooseAbstractQueryPresenter class >> defaultSpec [
 	^ SpecTableLayout column
+		maxCellSize: 20;
+		minCellSize: 10;
+		cellSpacing: 10;
 		newRow: [ :r | 
 			r
 				add: #ingoing;
 				add: #outgoing ];
-		add: #queriesOKButton;
 		yourself
 ]
 
@@ -38,15 +39,9 @@ MMCMooseAbstractQueryPresenter >> initializeWidgets [
 		addRadioButton: ingoing;
 		addRadioButton: outgoing;
 		default: ingoing.
-	queriesOKButton := self newButton
 ]
 
 { #category : #accessing }
 MMCMooseAbstractQueryPresenter >> outgoing [
 	^ outgoing
-]
-
-{ #category : #accessing }
-MMCMooseAbstractQueryPresenter >> queriesOKButton [
-	^ queriesOKButton
 ]

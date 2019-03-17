@@ -55,11 +55,17 @@ MMCAbstractAdapter >> properties [
 	^ model first allDeclaredProperties
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #utilities }
 MMCAbstractAdapter >> searchEntitiesWithParam: aDictionary [
-	^ model
-		select: [ :each | 
-			(each perform: (aDictionary at: 'property') name asSymbol)
-				perform: (aDictionary at: 'operator') asSymbol
-				with: (aDictionary at: 'value') ]
+	| text |
+	text := String
+		streamContents: [ :strem | 
+			strem
+				nextPutAll: 'each ';
+				nextPutAll: (aDictionary at: 'property') name;
+				space;
+				nextPutAll: (aDictionary at: 'operator');
+				space;
+				nextPutAll: (aDictionary at: 'value') ].
+			^ MVSFilterManager new executeQueryWith: text on:model  
 ]

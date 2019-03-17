@@ -79,7 +79,7 @@ MMCMoosePropertyFormPresenter >> performSearch [
 	param
 		at: 'property' put: queriesDropDown selected;
 		at: 'operator' put: queriesOperationsDropDown selectedItem;
-		at: 'value' put: queryValueInput text asInteger.
+		at: 'value' put: queryValueInput text.
 	context performSearchWithParameters: param
 ]
 
