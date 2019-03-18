@@ -43,7 +43,7 @@ MMCAbstractAdapter >> initialize [
 { #category : #accessing }
 MMCAbstractAdapter >> model: aModel [
 	model := aModel.
-	self initQueries
+	"self initQueries"
 ]
 
 { #category : #utilities }
