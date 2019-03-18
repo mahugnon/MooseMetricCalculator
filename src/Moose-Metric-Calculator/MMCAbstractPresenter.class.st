@@ -29,5 +29,5 @@ MMCAbstractPresenter >> subscribeTo: aContext [
 
 { #category : #updating }
 MMCAbstractPresenter >> update [
-	context activeFormPresenter update
+	"context activeFormPresenter update"
 ]
