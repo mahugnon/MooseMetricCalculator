@@ -29,6 +29,11 @@ MMCContext >> addListener: aListener [
 	listeners add: aListener
 ]
 
+{ #category : #acccessing }
+MMCContext >> focus [
+	^ focus
+]
+
 { #category : #accessing }
 MMCContext >> focus: aMooseModel [
 	focus := aMooseModel.
