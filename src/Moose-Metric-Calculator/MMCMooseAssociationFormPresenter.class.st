@@ -4,7 +4,11 @@ Class {
 	#instVars : [
 		'label',
 		'selectButton',
-		'classesPresenter'
+		'classesPresenter',
+		'queryMethodDropDown',
+		'associationDropDown',
+		'associationLabel',
+		'methodLabel'
 	],
 	#category : #'Moose-Metric-Calculator-Gui-Presenters'
 }
@@ -19,7 +23,9 @@ MMCMooseAssociationFormPresenter class >> defaultSpec [
 		newRow: [ :r | 
 			r
 				add: #label;
-				add: #selectButton ];
+				add: #selectButton;
+				add: #queryMethodDropDown;
+				add: #associationDropDown ];
 		yourself
 ]
 
@@ -27,6 +33,11 @@ MMCMooseAssociationFormPresenter class >> defaultSpec [
 MMCMooseAssociationFormPresenter class >> runMe [
 	<example>
 	self new openWithSpec
+]
+
+{ #category : #initialization }
+MMCMooseAssociationFormPresenter >> associationDropDown [
+	^ associationDropDown
 ]
 
 { #category : #accessing }
@@ -48,6 +59,22 @@ MMCMooseAssociationFormPresenter >> initLabel [
 ]
 
 { #category : #initialization }
+MMCMooseAssociationFormPresenter >> initQueryAssociationDropDown [
+	associationDropDown := self newDropList
+		items:
+			((FAMIXAssociation allSubclasses
+				select: [ :each | each ~= FAMIXTraitUsage ])
+				sorted: [ :a :b | a name < b name ])
+]
+
+{ #category : #initialization }
+MMCMooseAssociationFormPresenter >> initQueryMethodDropDown [
+	queryMethodDropDown := self newDropList
+		items: #(' queryLocal' 'query' 'queryAll' 'queryAllLocal');
+		displayBlock: [ :a | a asString ]
+]
+
+{ #category : #initialization }
 MMCMooseAssociationFormPresenter >> initSelectButton [
 	selectButton := self newButton label: '...'
 ]
@@ -62,7 +89,9 @@ MMCMooseAssociationFormPresenter >> initializeWidgets [
 	super initializeWidgets.
 	self initLabel.
 	self initSelectButton.
-	self initClassesPresenter
+	self initClassesPresenter.
+	self initQueryMethodDropDown.
+	self initQueryAssociationDropDown
 ]
 
 { #category : #accessing }
@@ -77,7 +106,12 @@ MMCMooseAssociationFormPresenter >> name [
 
 { #category : #initialization }
 MMCMooseAssociationFormPresenter >> openClassesPresenter [
-	classesPresenter openWithSpec
+	classesPresenter openDialogWithSpec 
+]
+
+{ #category : #accessing }
+MMCMooseAssociationFormPresenter >> queryMethodDropDown [
+	^ queryMethodDropDown
 ]
 
 { #category : #accessing }

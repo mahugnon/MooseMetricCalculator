@@ -4,8 +4,7 @@ Class {
 	#instVars : [
 		'nameInput',
 		'modelPresenter',
-		'modelLabel',
-		'queryMethodDropDown'
+		'modelLabel'
 	],
 	#category : #'Moose-Metric-Calculator-Gui-Presenters'
 }
@@ -32,21 +31,6 @@ self new openWithSpec
 { #category : #api }
 MMCMooseNavigationFormPresenter >> extent [ 
 ^250@250
-]
-
-{ #category : #initialization }
-MMCMooseNavigationFormPresenter >> initQueryASSociationDropDown [
-	queryMethodDropDown := self newDropList
-		item:
-			(FAMIXAssociation allSubclasses
-				select: [ :each | each ~= FAMIXTraitUsage ]);
-		sortingBlock: [ :a :b | a name < b name ]
-]
-
-{ #category : #initialization }
-MMCMooseNavigationFormPresenter >> initQueryMethodDropDown [
-	queryMethodDropDown := self newDropList
-	item: #(' queryLocal' 'query' 'queryAll' 'queryAllLocal')
 ]
 
 { #category : #initialization }
@@ -79,9 +63,4 @@ MMCMooseNavigationFormPresenter >> name [
 { #category : #accessing }
 MMCMooseNavigationFormPresenter >> nameInput [
 	^ nameInput
-]
-
-{ #category : #accessing }
-MMCMooseNavigationFormPresenter >> queryMethodDropDown [
-	^ queryMethodDropDown
 ]
