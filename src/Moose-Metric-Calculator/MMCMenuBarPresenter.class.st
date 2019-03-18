@@ -37,3 +37,9 @@ MMCMenuBarPresenter >> menuBarFor: aPresenter [
 	aMenu applyTo: aPresenter.
 	^ aMenu
 ]
+
+{ #category : #subscription }
+MMCMenuBarPresenter >> subscribeTo: aContext [
+	self subscribeToContext: aContext.
+	self update
+]

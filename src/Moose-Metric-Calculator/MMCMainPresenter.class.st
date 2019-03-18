@@ -32,26 +32,32 @@ MMCMainPresenter class >> runMe [
 { #category : #initialization }
 MMCMainPresenter >> initMenuBar [
 	menuBar := self instantiate: MMCMenuBarPresenter.
-	menuBar subscribeToContext: context.
-	menuBar update 
 	
 ]
 
 { #category : #initialization }
 MMCMainPresenter >> initMooseFormPresenter [
 	mooseFormPresenter := self instantiate: MMCMooseFormPresenter.
-	mooseFormPresenter subscribeTo: context
 ]
 
 { #category : #initialization }
 MMCMainPresenter >> initMooseModelPresenter [
 	mooseModelPresenter := self instantiate: MMCMooseModelPresenter.
-	mooseModelPresenter subscribeTo: context
+]
+
+{ #category : #initialization }
+MMCMainPresenter >> initialize [
+	super initialize.
+	self initializeContext.
+]
+
+{ #category : #initialization }
+MMCMainPresenter >> initializeContext [
+	self subscribeTo: MMCContext new.
 ]
 
 { #category : #initialization }
 MMCMainPresenter >> initializeWidgets [
-	self subscribeTo: MMCContext new.
 	self initMooseModelPresenter.
 	self initMooseFormPresenter.
 	self initMenuBar
@@ -70,6 +76,14 @@ MMCMainPresenter >> mooseFormPresenter [
 { #category : #accessing }
 MMCMainPresenter >> mooseModelPresenter [
 	^ mooseModelPresenter
+]
+
+{ #category : #initialization }
+MMCMainPresenter >> subscribeTo: aContext [
+	super subscribeTo: aContext.
+	mooseModelPresenter subscribeTo: aContext.
+	mooseFormPresenter subscribeTo: aContext.
+	menuBar subscribeTo: aContext.
 ]
 
 { #category : #updating }
