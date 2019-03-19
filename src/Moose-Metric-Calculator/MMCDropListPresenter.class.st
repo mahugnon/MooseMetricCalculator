@@ -29,6 +29,11 @@ MMCDropListPresenter class >> runMe [
 ]
 
 { #category : #accessing }
+MMCDropListPresenter >> classeNameLabel [
+	^ label
+]
+
+{ #category : #accessing }
 MMCDropListPresenter >> dropList [
 	^ dropList
 ]
@@ -44,11 +49,6 @@ MMCDropListPresenter >> initializeWidgets [
 	dropList := self newDropList.
 	dropList displayBlock: [ :item | item name asString ].
 	label := self newLabel
-]
-
-{ #category : #accessing }
-MMCDropListPresenter >> label [
-	^ label
 ]
 
 { #category : #accessing }

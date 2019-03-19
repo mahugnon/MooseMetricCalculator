@@ -18,13 +18,17 @@ MMCMooseAssociationFormPresenter class >> defaultSpec [
 	| spec |
 	spec := super defaultSpec.
 	^ spec
-		cellSpacing: 0.5;
-		maxCellSize: 20;
-		newRow: [ :r | 
+		newColumn: [ :r | 
 			r
-				add: #label;
-				add: #selectButton;
-				add: #queryMethodDropDown;
+				add: #queryMethodLabel;
+				add: #queryMethodDropDown ];
+	newColumn: [ :r | 
+			r
+				add: #classeNameLabel;
+				add: #selectButton ];
+	newColumn: [ :r | 
+			r
+				add: #associationLabel;
 				add: #associationDropDown ];
 		yourself
 ]
