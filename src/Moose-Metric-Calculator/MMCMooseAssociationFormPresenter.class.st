@@ -2,13 +2,13 @@ Class {
 	#name : #MMCMooseAssociationFormPresenter,
 	#superclass : #MMCMooseAbstractQueryPresenter,
 	#instVars : [
-		'label',
 		'selectButton',
 		'classesPresenter',
 		'queryMethodDropDown',
 		'associationDropDown',
 		'associationLabel',
-		'methodLabel'
+		'classeNameLabel',
+		'queryMethodLabel'
 	],
 	#category : #'Moose-Metric-Calculator-Gui-Presenters'
 }
@@ -45,21 +45,38 @@ MMCMooseAssociationFormPresenter >> associationDropDown [
 ]
 
 { #category : #accessing }
+MMCMooseAssociationFormPresenter >> associationLabel [
+	^ associationLabel
+]
+
+{ #category : #accessing }
+MMCMooseAssociationFormPresenter >> classeNameLabel [
+	^ classeNameLabel
+]
+
+{ #category : #accessing }
 MMCMooseAssociationFormPresenter >> classesPresenter [
 	^ classesPresenter
+]
+
+{ #category : #initialization }
+MMCMooseAssociationFormPresenter >> initAssociationLabel [
+	associationLabel := self newLabel
+		emphasis: #bold;
+		label: 'Association: '
+]
+
+{ #category : #initialization }
+MMCMooseAssociationFormPresenter >> initClasseNameLabel [
+	classeNameLabel := self newLabel
+		emphasis: #bold;
+		label: 'FamixClasse: '
 ]
 
 { #category : #initialization }
 MMCMooseAssociationFormPresenter >> initClassesPresenter [
 	classesPresenter := self newList
 		sortingBlock: [ :a :b | a asString < b asString ]
-]
-
-{ #category : #initialization }
-MMCMooseAssociationFormPresenter >> initLabel [
-	label := self newLabel
-		emphasis: #bold;
-		label: 'Classe'
 ]
 
 { #category : #initialization }
@@ -78,6 +95,13 @@ MMCMooseAssociationFormPresenter >> initQueryMethodDropDown [
 		displayBlock: [ :a | a asString ]
 ]
 
+{ #category : #accessing }
+MMCMooseAssociationFormPresenter >> initQueryMethodLabel [
+queryMethodLabel  := self newLabel
+		emphasis: #bold;
+		label: 'Query Method: '
+]
+
 { #category : #initialization }
 MMCMooseAssociationFormPresenter >> initSelectButton [
 	selectButton := self newButton label: '...'
@@ -91,16 +115,13 @@ selectButton action: [ self openClassesPresenter ]
 { #category : #initialization }
 MMCMooseAssociationFormPresenter >> initializeWidgets [
 	super initializeWidgets.
-	self initLabel.
+	self initClasseNameLabel.
 	self initSelectButton.
 	self initClassesPresenter.
 	self initQueryMethodDropDown.
-	self initQueryAssociationDropDown
-]
-
-{ #category : #accessing }
-MMCMooseAssociationFormPresenter >> label [
-	^ label
+	self initQueryAssociationDropDown.
+	self initQueryMethodLabel.
+	self initAssociationLabel
 ]
 
 { #category : #accessing }
@@ -116,6 +137,11 @@ MMCMooseAssociationFormPresenter >> openClassesPresenter [
 { #category : #accessing }
 MMCMooseAssociationFormPresenter >> queryMethodDropDown [
 	^ queryMethodDropDown
+]
+
+{ #category : #accessing }
+MMCMooseAssociationFormPresenter >> queryMethodLabel [
+	^ queryMethodLabel
 ]
 
 { #category : #accessing }

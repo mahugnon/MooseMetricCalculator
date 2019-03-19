@@ -17,7 +17,7 @@ MMCDropListPresenter class >> defaultSpec [
 	^ SpecTableLayout row
 		minCellSize: 10;
 		maxCellSize: 20;
-		add: #label;
+		add: #classeNameLabel;
 		add: #dropList;
 		yourself
 ]
