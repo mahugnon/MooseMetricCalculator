@@ -23,6 +23,28 @@ MMCMooseModelPresenter class >> runMe [
 	self new openWithSpec
 ]
 
+{ #category : #specs }
+MMCMooseModelPresenter class >> useful [
+| tree chblock |
+tree := TreePresenter  new.
+chblock := [:cl | | subs node |
+subs := cl .
+node := TreeNodePresenter  new.
+node content: cl;
+hasChildren: [ subs isKindOf: MooseAbstractGroup  ];
+children: [ subs collect: [:sub | chblock value: sub ] ] ].
+tree roots:
+(MooseModel root first cacheMooseGroups entityCache values collect: [:cl| chblock value: cl ]).
+tree whenBuiltDo: [ |sel|
+sel := tree roots third.
+tree selectedItem: sel.
+sel selected: true.].
+tree openWithSpec
+
+
+
+]
+
 { #category : #initialization }
 MMCMooseModelPresenter >> initiMooseModels [
 	mooseModels := self instantiate: FastTablePresenter.
