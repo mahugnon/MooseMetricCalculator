@@ -49,7 +49,7 @@ MMCContext >> history: aMMCHistory [
 { #category : #initialization }
 MMCContext >> initialize [
 	super initialize.
-	query := MMCQuery new.
+	query := MMCAbstractQuery new.
 	listeners := OrderedCollection new.
 	mooseModel := MooseModel root isEmpty
 		ifTrue: [ OrderedCollection new ]
@@ -82,6 +82,11 @@ MMCContext >> performSearchWithParameters: aDictionary [
 ]
 
 { #category : #'queries - protocols' }
+MMCContext >> query: aQuery [
+	query := aQuery 
+]
+
+{ #category : #'queries - protocols' }
 MMCContext >> queryAssociation: anAssociation [
 	query association: anAssociation
 ]
@@ -94,11 +99,6 @@ MMCContext >> queryDirection: aString [
 { #category : #'queries - protocols' }
 MMCContext >> queryFamixClass: aFamixClass [
 	query famixClass: aFamixClass
-]
-
-{ #category : #'queries - protocols' }
-MMCContext >> queryMethod: aString [
-	query method: aString
 ]
 
 { #category : #accessing }

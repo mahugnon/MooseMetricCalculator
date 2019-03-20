@@ -84,10 +84,10 @@ MMCTest >> tearDown [
 { #category : #tests }
 MMCTest >> testBuildQueryString [
 | query code|
-query:=MMCQuery new. 
-query famixClass: testModel allModelClasses first;
-method: 'queryAll';
-direction: '#out';
+query:=MMCAbstractQuery new. 
+query famixClass: testModel allModelClasses second ;
+method: 'query';
+direction: #in;
 association: FAMIXAccess .
 code:= query searchAssociations .
 self assert: query buildQueryString equals: ''.

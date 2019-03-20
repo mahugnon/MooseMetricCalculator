@@ -100,8 +100,10 @@ MMCMooseAssociationFormPresenter >> initQueryAssociationDropDown [
 { #category : #initialization }
 MMCMooseAssociationFormPresenter >> initQueryMethodDropDown [
 	queryMethodDropDown := self newDropList
-		items: #(' queryLocal' 'query' 'queryAll' 'queryAllLocal');
-		displayBlock: [ :a | a asString ]
+		items:
+			(MMCAbstractQuery allSubclasses
+				sorted: [ :a :b | a asString < b asString ]);
+		displayBlock: [ :a | a displayName asString ]
 ]
 
 { #category : #accessing }
@@ -129,7 +131,7 @@ MMCMooseAssociationFormPresenter >> initializePresenter [
 	super initializePresenter.
 	selectButton action: [ self openClassesPresenter ].
 	queryMethodDropDown
-		whenSelectedItemChanged: [ :item | self queryMethod: item ].
+		whenSelectedItemChanged: [ :item | self query: item ].
 	associationDropDown
 		whenSelectedItemChanged: [ :item | self queryAssociation: item ].
 	searchButton action: [ context searchAssociations ]
@@ -160,13 +162,13 @@ MMCMooseAssociationFormPresenter >> openClassesPresenter [
 ]
 
 { #category : #initialization }
-MMCMooseAssociationFormPresenter >> queryAssociation: item [
-	^ context queryAssociation: item
+MMCMooseAssociationFormPresenter >> query: aQueryClass [
+	^ context query: aQueryClass new
 ]
 
 { #category : #initialization }
-MMCMooseAssociationFormPresenter >> queryMethod: item [
-	^ context queryMethod: item
+MMCMooseAssociationFormPresenter >> queryAssociation: item [
+	^ context queryAssociation: item
 ]
 
 { #category : #accessing }
