@@ -126,7 +126,13 @@ MMCMooseAssociationFormPresenter >> initSelectButton [
 
 { #category : #initialization }
 MMCMooseAssociationFormPresenter >> initializePresenter [
-	selectButton action: [ self openClassesPresenter ]
+	super initializePresenter.
+	selectButton action: [ self openClassesPresenter ].
+	queryMethodDropDown
+		whenSelectedItemChanged: [ :item | self queryMethod: item ].
+	associationDropDown
+		whenSelectedItemChanged: [ :item | self queryAssociation: item ].
+	searchButton action: [ context searchAssociations ]
 ]
 
 { #category : #initialization }
@@ -149,7 +155,18 @@ MMCMooseAssociationFormPresenter >> name [
 
 { #category : #initialization }
 MMCMooseAssociationFormPresenter >> openClassesPresenter [
-	classesPresenter openDialogWithSpec 
+	classesPresenter openDialogWithSpec
+		okAction: [ context queryFamixClass: classesPresenter selectedItem ]
+]
+
+{ #category : #initialization }
+MMCMooseAssociationFormPresenter >> queryAssociation: item [
+	^ context queryAssociation: item
+]
+
+{ #category : #initialization }
+MMCMooseAssociationFormPresenter >> queryMethod: item [
+	^ context queryMethod: item
 ]
 
 { #category : #accessing }

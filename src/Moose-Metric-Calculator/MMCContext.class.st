@@ -8,21 +8,11 @@ Class {
 		'listeners',
 		'mooseModel',
 		'focus',
-		'activeFormPresenter',
-		'history'
+		'history',
+		'query'
 	],
 	#category : #'Moose-Metric-Calculator-Context'
 }
-
-{ #category : #accessing }
-MMCContext >> activeFormPresenter [
-	^ activeFormPresenter
-]
-
-{ #category : #accessing }
-MMCContext >> activeFormPresenter: aMooseQueryFormPresenter [
-	activeFormPresenter := aMooseQueryFormPresenter
-]
 
 { #category : #adding }
 MMCContext >> addListener: aListener [
@@ -59,6 +49,7 @@ MMCContext >> history: aMMCHistory [
 { #category : #initialization }
 MMCContext >> initialize [
 	super initialize.
+	query := MMCQuery new.
 	listeners := OrderedCollection new.
 	mooseModel := MooseModel root isEmpty
 		ifTrue: [ OrderedCollection new ]
@@ -88,4 +79,29 @@ MMCContext >> performSearchWithParameters: aDictionary [
 	history updatePast.
 	self
 		mooseModel: {(self getAdapter searchEntitiesWithParam: aDictionary)} 
+]
+
+{ #category : #'queries - protocols' }
+MMCContext >> queryAssociation: anAssociation [
+	query association: anAssociation
+]
+
+{ #category : #'queries - protocols' }
+MMCContext >> queryDirection: aString [
+	query direction: aString
+]
+
+{ #category : #'queries - protocols' }
+MMCContext >> queryFamixClass: aFamixClass [
+	query famixClass: aFamixClass
+]
+
+{ #category : #'queries - protocols' }
+MMCContext >> queryMethod: aString [
+	query method: aString
+]
+
+{ #category : #accessing }
+MMCContext >> searchAssociations [
+	^ query searchAssociations
 ]

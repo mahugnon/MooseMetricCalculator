@@ -16,6 +16,11 @@ MMCAbstractPresenter >> getAdapter [
 	mmcAdapter := MMCAbstractAdapter adapterFor: context focus
 ]
 
+{ #category : #'as yet unclassified' }
+MMCAbstractPresenter >> getContext [
+	^ context ifNil: [ ^ context := MMCContext new ]
+]
+
 { #category : #accessing }
 MMCAbstractPresenter >> operations [
 	^ #(= < >) asOrderedCollection
