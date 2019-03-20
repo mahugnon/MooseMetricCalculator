@@ -2,13 +2,13 @@ Class {
 	#name : #MMCMooseAssociationFormPresenter,
 	#superclass : #MMCMooseAbstractQueryPresenter,
 	#instVars : [
-		'label',
 		'selectButton',
 		'classesPresenter',
 		'queryMethodDropDown',
 		'associationDropDown',
 		'associationLabel',
-		'methodLabel'
+		'classeNameLabel',
+		'queryMethodLabel'
 	],
 	#category : #'Moose-Metric-Calculator-Gui-Presenters'
 }
@@ -50,6 +50,11 @@ MMCMooseAssociationFormPresenter >> associationLabel [
 ]
 
 { #category : #accessing }
+MMCMooseAssociationFormPresenter >> classeNameLabel [
+	^ classeNameLabel
+]
+
+{ #category : #accessing }
 MMCMooseAssociationFormPresenter >> classesPresenter [
 	^ classesPresenter
 ]
@@ -66,6 +71,13 @@ MMCMooseAssociationFormPresenter >> initClassLabel [
 	label := self newLabel
 		emphasis: #bold;
 		label: 'Class'
+]
+
+{ #category : #initialization }
+MMCMooseAssociationFormPresenter >> initClasseNameLabel [
+	classeNameLabel := self newLabel
+		emphasis: #bold;
+		label: 'FamixClasse: '
 ]
 
 { #category : #initialization }
@@ -88,6 +100,13 @@ MMCMooseAssociationFormPresenter >> initQueryMethodDropDown [
 	queryMethodDropDown := self newDropList
 		items: #(' queryLocal' 'query' 'queryAll' 'queryAllLocal');
 		displayBlock: [ :a | a asString ]
+]
+
+{ #category : #accessing }
+MMCMooseAssociationFormPresenter >> initQueryMethodLabel [
+queryMethodLabel  := self newLabel
+		emphasis: #bold;
+		label: 'Query Method: '
 ]
 
 { #category : #initialization }
@@ -113,11 +132,6 @@ MMCMooseAssociationFormPresenter >> initializeWidgets [
 ]
 
 { #category : #accessing }
-MMCMooseAssociationFormPresenter >> label [
-	^ label
-]
-
-{ #category : #accessing }
 MMCMooseAssociationFormPresenter >> name [
 	^ 'Association'
 ]
@@ -130,6 +144,11 @@ MMCMooseAssociationFormPresenter >> openClassesPresenter [
 { #category : #accessing }
 MMCMooseAssociationFormPresenter >> queryMethodDropDown [
 	^ queryMethodDropDown
+]
+
+{ #category : #accessing }
+MMCMooseAssociationFormPresenter >> queryMethodLabel [
+	^ queryMethodLabel
 ]
 
 { #category : #accessing }

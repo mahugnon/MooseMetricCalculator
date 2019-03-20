@@ -17,7 +17,7 @@ MMCDropListPresenter class >> defaultSpec [
 	^ SpecTableLayout row
 		minCellSize: 10;
 		maxCellSize: 20;
-		add: #label;
+		add: #classeNameLabel;
 		add: #dropList;
 		yourself
 ]
@@ -26,6 +26,11 @@ MMCDropListPresenter class >> defaultSpec [
 MMCDropListPresenter class >> runMe [
 	<example>
 	self new openWithSpec
+]
+
+{ #category : #accessing }
+MMCDropListPresenter >> classeNameLabel [
+	^ label
 ]
 
 { #category : #accessing }
@@ -44,11 +49,6 @@ MMCDropListPresenter >> initializeWidgets [
 	dropList := self newDropList.
 	dropList displayBlock: [ :item | item name asString ].
 	label := self newLabel
-]
-
-{ #category : #accessing }
-MMCDropListPresenter >> label [
-	^ label
 ]
 
 { #category : #accessing }
