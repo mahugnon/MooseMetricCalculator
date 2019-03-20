@@ -22,7 +22,8 @@ BaselineOfMooseMetricCalculator >> baseline: spec [
 { #category : #baselines }
 BaselineOfMooseMetricCalculator >> baselineForUtilities: spec [
 	spec
-		baseline: 'Moose'
+		baseline: 'MooseVisuOnSpec'
 		with:
-			[ spec repository: 'github://mahugnon/VisuProject:bazader/src' ]
+			[ spec loads: #('utilities');
+			 repository: 'github://mahugnon/VisuProject:bazader/src' ]
 ]
