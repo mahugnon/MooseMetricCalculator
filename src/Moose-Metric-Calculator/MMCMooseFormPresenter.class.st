@@ -67,21 +67,21 @@ MMCMooseFormPresenter >> pageFor: aForm [
 
 { #category : #initialization }
 MMCMooseFormPresenter >> setActiveFormPresenter: tab [
-	^ context
+"	^ context
 		activeFormPresenter:
 			(forms
 				select: [ :each | each  = (tab retrievingBlockHolder value at: 1)])
-				first
+				first"
 ]
 
 { #category : #subscription }
 MMCMooseFormPresenter >> subscribeTo: aContext [
 	super subscribeTo: aContext.
-	self setActiveFormPresenter: formManager tabs first.
+"	self setActiveFormPresenter: formManager tabs first."
 	forms do: [ :each | each subscribeTo: aContext ]
 ]
 
 { #category : #subscription }
 MMCMooseFormPresenter >> update [
-	context activeFormPresenter update
+	"context activeFormPresenter update"
 ]

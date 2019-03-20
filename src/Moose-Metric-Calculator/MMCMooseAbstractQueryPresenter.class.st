@@ -14,13 +14,16 @@ Class {
 { #category : #specs }
 MMCMooseAbstractQueryPresenter class >> defaultSpec [
 	^ SpecTableLayout column
-		maxCellSize: 20;
+		maxCellSize: 100;
 		minCellSize: 10;
-		cellSpacing: 10;
-		newRow: [ :r | 
+		cellSpacing: #none;
+		"vResizing: #shrinkWrap;
+		hResizing: #shrinkWrap;"
+			newRow: [ :r | 
 			r
 				add: #ingoing;
-				add: #outgoing ];
+				add: #outgoing ]
+			height: self toolbarHeight;
 		yourself
 ]
 
@@ -30,18 +33,41 @@ MMCMooseAbstractQueryPresenter >> ingoing [
 ]
 
 { #category : #initialization }
-MMCMooseAbstractQueryPresenter >> initializeWidgets [
+MMCMooseAbstractQueryPresenter >> initIngoing [
 	ingoing := self instantiate: RadioButtonPresenter.
-	outgoing := self instantiate: RadioButtonPresenter.
 	ingoing label: 'Ingoing'.
+	
+]
+
+{ #category : #initialization }
+MMCMooseAbstractQueryPresenter >> initOutgoing [
+	outgoing := self instantiate: RadioButtonPresenter.
 	outgoing label: 'Outgoing'.
+	
+]
+
+{ #category : #initialization }
+MMCMooseAbstractQueryPresenter >> initializePresenter [
+	ingoing activationAction: [ self queryDirection:#in ].
+	outgoing activationAction: [ self queryDirection: #out ]
+]
+
+{ #category : #initialization }
+MMCMooseAbstractQueryPresenter >> initializeWidgets [
+	self initIngoing.
+	self initOutgoing.
 	RadioButtonGroupPresenter new
 		addRadioButton: ingoing;
 		addRadioButton: outgoing;
-		default: ingoing.
+		default: ingoing
 ]
 
 { #category : #accessing }
 MMCMooseAbstractQueryPresenter >> outgoing [
 	^ outgoing
+]
+
+{ #category : #initialization }
+MMCMooseAbstractQueryPresenter >> queryDirection: aSymbol [
+	^ self getContext queryDirection: aSymbol
 ]

@@ -16,12 +16,12 @@ Class {
 { #category : #specs }
 MMCMoosePropertyFormPresenter class >> defaultSpec [
 	^ SpecColumnLayout composed
-		newRow: [ :r | r add: #queriesDropDown ] height: 50;
+		newRow: [ :r | r add: #queriesDropDown ] height: self toolbarHeight;
 		newRow:
 				[ :r | r add: #queriesOperationsDropDown origin: 0 @ 1 corner: 0.3 @ 1.2 ]
-			height: 30;
-		add: #queryValueInput height: 40;
-		add: #queriesOKButton height: 50;
+			height: self toolbarHeight;
+		add: #queryValueInput height: self toolbarHeight;
+		add: #queriesOKButton height: self toolbarHeight;
 		yourself
 ]
 
