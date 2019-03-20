@@ -20,12 +20,16 @@ MMCMooseAssociationFormPresenter class >> defaultSpec [
 	^ spec
 		cellSpacing: 0.5;
 		maxCellSize: 20;
+		minCellSize: 10;
+		newRow: [ :row | 
+			row
+				add: #associationLabel;
+				add: #associationDropDown ];
 		newRow: [ :r | 
 			r
 				add: #label;
 				add: #selectButton;
-				add: #queryMethodDropDown;
-				add: #associationDropDown ];
+				add: #queryMethodDropDown ];
 		yourself
 ]
 
@@ -41,21 +45,33 @@ MMCMooseAssociationFormPresenter >> associationDropDown [
 ]
 
 { #category : #accessing }
+MMCMooseAssociationFormPresenter >> associationLabel [
+	^ associationLabel
+]
+
+{ #category : #accessing }
 MMCMooseAssociationFormPresenter >> classesPresenter [
 	^ classesPresenter
+]
+
+{ #category : #'as yet unclassified' }
+MMCMooseAssociationFormPresenter >> initAssociationLabel [
+associationLabel:= self newLabel 
+emphasis: #bold;
+		label: 'Associations'
+]
+
+{ #category : #initialization }
+MMCMooseAssociationFormPresenter >> initClassLabel [
+	label := self newLabel
+		emphasis: #bold;
+		label: 'Class'
 ]
 
 { #category : #initialization }
 MMCMooseAssociationFormPresenter >> initClassesPresenter [
 	classesPresenter := self newList
 		sortingBlock: [ :a :b | a asString < b asString ]
-]
-
-{ #category : #initialization }
-MMCMooseAssociationFormPresenter >> initLabel [
-	label := self newLabel
-		emphasis: #bold;
-		label: 'Classe'
 ]
 
 { #category : #initialization }
@@ -80,18 +96,20 @@ MMCMooseAssociationFormPresenter >> initSelectButton [
 ]
 
 { #category : #initialization }
-MMCMooseAssociationFormPresenter >> initializePresenter [ 
-selectButton action: [ self openClassesPresenter ]
+MMCMooseAssociationFormPresenter >> initializePresenter [
+	selectButton action: [ self openClassesPresenter ]
 ]
 
 { #category : #initialization }
 MMCMooseAssociationFormPresenter >> initializeWidgets [
 	super initializeWidgets.
-	self initLabel.
+	self initClassLabel.
 	self initSelectButton.
 	self initClassesPresenter.
 	self initQueryMethodDropDown.
-	self initQueryAssociationDropDown
+	self initQueryAssociationDropDown.
+	self initAssociationLabel .
+	
 ]
 
 { #category : #accessing }
