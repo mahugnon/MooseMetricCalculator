@@ -16,13 +16,14 @@ MMCMooseAbstractQueryPresenter class >> defaultSpec [
 	^ SpecTableLayout column
 		maxCellSize: 100;
 		minCellSize: 10;
-		cellInset: 50;
+		cellSpacing: #none;
 		"vResizing: #shrinkWrap;
 		hResizing: #shrinkWrap;"
-		newRow: [ :r | 
+			newRow: [ :r | 
 			r
 				add: #ingoing;
-				add: #outgoing ];
+				add: #outgoing ]
+			height: self toolbarHeight;
 		yourself
 ]
 

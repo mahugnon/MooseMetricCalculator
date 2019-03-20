@@ -8,7 +8,8 @@ Class {
 		'associationDropDown',
 		'associationLabel',
 		'classeNameLabel',
-		'queryMethodLabel'
+		'queryMethodLabel',
+		'searchButton'
 	],
 	#category : #'Moose-Metric-Calculator-Gui-Presenters'
 }
@@ -18,18 +19,26 @@ MMCMooseAssociationFormPresenter class >> defaultSpec [
 	| spec |
 	spec := super defaultSpec.
 	^ spec
-		cellSpacing: 0.5;
-		maxCellSize: 20;
-		minCellSize: 10;
-		newRow: [ :row | 
-			row
-				add: #associationLabel;
-				add: #associationDropDown ];
-		newRow: [ :r | 
+		newColumn: [ :r | 
 			r
-				add: #label;
-				add: #selectButton;
-				add: #queryMethodDropDown ];
+				newRow: [ :row | row add: #queryMethodLabel ]
+					height: self toolbarHeight;
+				newRow: [ :row | row add: #queryMethodDropDown ]
+					height: self toolbarHeight ];
+		newColumn: [ :r | 
+			r
+				newRow: [ :row | row add: #classeNameLabel ]
+					height: self toolbarHeight;
+				newRow: [ :row | row add: #selectButton ]
+					height: self toolbarHeight ];
+		newColumn: [ :r | 
+			r
+				newRow: [ :row | row add: #associationLabel ]
+					height: self toolbarHeight;
+				newRow: [ :row | row add: #associationDropDown ]
+					height: self toolbarHeight ];
+		newRow: [ :row | row add: #searchButton  ]
+			height: self toolbarHeight;
 		yourself
 ]
 
@@ -59,18 +68,11 @@ MMCMooseAssociationFormPresenter >> classesPresenter [
 	^ classesPresenter
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 MMCMooseAssociationFormPresenter >> initAssociationLabel [
 associationLabel:= self newLabel 
 emphasis: #bold;
 		label: 'Associations'
-]
-
-{ #category : #initialization }
-MMCMooseAssociationFormPresenter >> initClassLabel [
-	label := self newLabel
-		emphasis: #bold;
-		label: 'Class'
 ]
 
 { #category : #initialization }
@@ -110,6 +112,14 @@ queryMethodLabel  := self newLabel
 ]
 
 { #category : #initialization }
+MMCMooseAssociationFormPresenter >> initSearchButton [
+	searchButton := self newButton.
+	searchButton
+		label: 'Search';
+		icon: (self iconNamed: #glamorousSearch)
+]
+
+{ #category : #initialization }
 MMCMooseAssociationFormPresenter >> initSelectButton [
 	selectButton := self newButton label: '...'
 ]
@@ -122,13 +132,14 @@ MMCMooseAssociationFormPresenter >> initializePresenter [
 { #category : #initialization }
 MMCMooseAssociationFormPresenter >> initializeWidgets [
 	super initializeWidgets.
-	self initClassLabel.
+	self initClasseNameLabel.
 	self initSelectButton.
 	self initClassesPresenter.
 	self initQueryMethodDropDown.
 	self initQueryAssociationDropDown.
-	self initAssociationLabel .
-	
+	self initQueryMethodLabel.
+	self initAssociationLabel.
+	self initSearchButton 
 ]
 
 { #category : #accessing }
@@ -149,6 +160,11 @@ MMCMooseAssociationFormPresenter >> queryMethodDropDown [
 { #category : #accessing }
 MMCMooseAssociationFormPresenter >> queryMethodLabel [
 	^ queryMethodLabel
+]
+
+{ #category : #accessing }
+MMCMooseAssociationFormPresenter >> searchButton [
+	^ searchButton
 ]
 
 { #category : #accessing }
