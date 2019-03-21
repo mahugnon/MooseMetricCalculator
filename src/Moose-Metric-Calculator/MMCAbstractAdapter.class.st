@@ -29,6 +29,21 @@ MMCAbstractAdapter class >> adapterFor: aModel [
 		ifFalse: [ adapter first new model: aModel ]
 ]
 
+{ #category : #visiting }
+MMCAbstractAdapter >> acceptAssociationQuery [
+	^ self subclassResponsibility
+]
+
+{ #category : #visiting }
+MMCAbstractAdapter >> acceptNavigationQuery [ 
+	^ self subclassResponsibility
+]
+
+{ #category : #visiting }
+MMCAbstractAdapter >> acceptPropertyQuery [ 
+	^ self subclassResponsibility
+]
+
 { #category : #accessing }
 MMCAbstractAdapter >> associations [
 

@@ -21,7 +21,7 @@ MMCContext >> addListener: aListener [
 
 { #category : #acccessing }
 MMCContext >> focus [
-	^ focus
+	^ MMCAbstractAdapter adapterFor: focus
 ]
 
 { #category : #accessing }

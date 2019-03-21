@@ -11,3 +11,18 @@ Class {
 MMCFAMIXClassAdapter class >> adaptedClass [
 	^ FAMIXClass
 ]
+
+{ #category : #visiting }
+MMCFAMIXClassAdapter >> acceptAssociationQuery [
+	^ true
+]
+
+{ #category : #visiting }
+MMCFAMIXClassAdapter >> acceptNavigationQuery [ 
+	^ true
+]
+
+{ #category : #visiting }
+MMCFAMIXClassAdapter >> acceptPropertyQuery [ 
+	^ false
+]
