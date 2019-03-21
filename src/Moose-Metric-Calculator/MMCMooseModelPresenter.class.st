@@ -47,20 +47,37 @@ tree openWithSpec
 
 { #category : #initialization }
 MMCMooseModelPresenter >> initiMooseModels [
-	mooseModels := self instantiate: FastTablePresenter.
+	| chblock |
+	mooseModels := self newTree.
 	mooseModels
 		displayBlock: [ :item | 
 			item class = MooseModel
 				ifTrue: [ item name ]
 				ifFalse: [ item asString copyReplaceAll: 'famixt' with: 'famix' ] ];
-		icons: [ :item | item mooseIcon ];
-		sortingBlock: [ :a :b | a asString < b asString ]
+		iconBlock: [ :item | item mooseIcon ].
+	chblock := [ :cl | 
+	| subs node |
+	subs := cl.
+	node := TreeNodePresenter new.
+	node
+		content: cl;
+		hasChildren: [ subs isKindOf: MooseAbstractGroup ];
+		children: [ subs collect: [ :sub | chblock value: sub ] ] ].
+	mooseModels
+		roots:
+			(self getContext mooseModel values
+				collect: [ :cl | chblock value: cl ]).
+	mooseModels
+		whenBuiltDo: [ | sel |
+			sel := mooseModels roots third.
+			mooseModels selectedItem: sel.
+			sel selected: true ]
 ]
 
 { #category : #initialization }
 MMCMooseModelPresenter >> initializePresenter [
-	mooseModels
-		whenSelectedItemChanged: [ :item | item ifNotEmpty: (self setFocus: item) ]
+mooseModels
+		whenSelectedItemChanged: [ :item | item ifNotNil: (self setFocus: item) ]
 ]
 
 { #category : #initialization }
@@ -86,5 +103,5 @@ MMCMooseModelPresenter >> subscribeTo: aContext [
 
 { #category : #subscription }
 MMCMooseModelPresenter >> update [
-	^ mooseModels items: context mooseModel
+	^ self initiMooseModels 
 ]

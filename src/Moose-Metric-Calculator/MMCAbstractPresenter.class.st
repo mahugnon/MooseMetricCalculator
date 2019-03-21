@@ -16,7 +16,7 @@ MMCAbstractPresenter >> getAdapter [
 	mmcAdapter := MMCAbstractAdapter adapterFor: context focus
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 MMCAbstractPresenter >> getContext [
 	^ context ifNil: [ ^ context := MMCContext new ]
 ]
