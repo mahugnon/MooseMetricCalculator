@@ -24,5 +24,5 @@ BaselineOfMooseMetricCalculator >> baselineForUtilities: spec [
 	spec
 		baseline: 'MooseVisuProject'
 		with:
-			[ spec repository: 'github://mahugnon/VisuProject:master/src' ]
+			[ spec repository: 'github://mahugnon/MooseVisuOnSpec:master/src' ]
 ]
